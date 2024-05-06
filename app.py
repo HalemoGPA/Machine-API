@@ -119,3 +119,8 @@ async def predict(data: InputData):
 
     # Return prediction
     return {"prediction": int(prediction)}
+
+
+@app.get("/")
+async def main():
+    return {"message": "Hello, World"}
