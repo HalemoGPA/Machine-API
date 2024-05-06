@@ -11,11 +11,18 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import PowerTransformer, StandardScaler, OrdinalEncoder
 from imblearn.over_sampling import ADASYN
-
+from fastapi.middleware.cors import CORSMiddleware
 from sklearn.ensemble import GradientBoostingClassifier
 
 app = FastAPI()
-
+# Allow all origins with the appropriate parameters
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 model = joblib.load("model.pkl")
 X = joblib.load("myX.pkl")
